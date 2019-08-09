@@ -1,6 +1,13 @@
 # tic-tac-toe
 O objetivo deste projeto é desenvolver uma api para um jogo multiplayer de Jogo da Velha.
 
+|    |    |    |
+|---|---|---|
+|:wink:|:x:|:x:|
+|:x:|:wink:|   |
+||:x:|:wink:|
+|    |    |    |
+
 ## Premissas
 - [x] Poderá ser feito em qualquer linguagem;
 - [x] Deverá conter um README com instruções claras de build e dependências;
