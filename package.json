@@ -1,0 +1,24 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "O objetivo deste projeto é desenvolver uma api para um jogo multiplayer de Jogo da Velha",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test mocha --exit",
+    "lint": "eslint '**/*.js' --fix",
+    "start": "node src/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ugenio/tic-tac-toe.git"
+  },
+  "keywords": [
+    "tic-tac-toe"
+  ],
+  "author": "Eugenio Cunha <eugenio.cunha@ymail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ugenio/tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/ugenio/tic-tac-toe#readme"
+}

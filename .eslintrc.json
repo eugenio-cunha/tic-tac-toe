@@ -1,0 +1,72 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "browser": true,
+    "mocha": true,
+    "es6": true
+  },
+  "extends": "eslint:recommended",
+  "plugins": [
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 9
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "eol-last": 2,
+    "block-spacing": "error",
+    "func-call-spacing": 2,
+    "no-trailing-spaces": "error",
+    "no-var": "error",
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "comma-dangle": "error",
+    "no-unused-vars": [
+      2,
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "exceptions": [
+          "-",
+          "+"
+        ]
+      }
+    ],
+    "strict": "error"
+  }
+}
