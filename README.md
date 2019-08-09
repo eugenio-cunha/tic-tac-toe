@@ -12,8 +12,7 @@ O objetivo deste projeto é desenvolver uma api para um jogo multiplayer de Jogo
 - [x] Poderá ser feito em qualquer linguagem;
 - [x] Deverá conter um README com instruções claras de build e dependências;
 - [x] Build automatizado é opcional mas desejável;
-- [x] Não pode haver dependência de banco de dados ou serviços externos. A persistência dos dados pode
-- [x] Ser feita por exemplo in-memory ou baseada em arquivos;
+- [x] Não pode haver dependência de banco de dados ou serviços externos. A persistência dos dados pode Ser feita por exemplo in-memory ou baseada em arquivos;
 - [x] Não é necessária preocupação com autenticação dos métodos;
 - [x] **Será avaliado além do funcionamento da API boas práticas de desenvolvimento de software**.
 
