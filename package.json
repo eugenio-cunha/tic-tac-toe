@@ -15,6 +15,19 @@
   "keywords": [
     "tic-tac-toe"
   ],
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "eslint": "^5.15.3",
+    "eslint-plugin-prettier": "^3.0.1",
+    "mocha": "^5.2.0",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^3.3.2"
+  },
   "author": "Eugenio Cunha <eugenio.cunha@ymail.com>",
   "license": "MIT",
   "bugs": {
