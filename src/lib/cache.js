@@ -23,7 +23,19 @@ exports.set = (id, game, callback) => {
  * @param {Function} callback chamada de retorno `(err, res) => {};`
  */
 exports.get = (id, callback) => {
-  if (!cache.has(id)) return callback('game not found');
+  if (!cache.has(id)) return callback('Não é turno do jogador');
 
   callback(null, cache.get(id));
+};
+
+/**
+ * @description Deleta uma partida
+ *
+ * @param {String} id chave da jogo
+ * @param {Function} callback chamada de retorno `(err, res) => {};`
+ */
+exports.del = (id, callback) => {
+  if (!cache.delete(id)) return callback('game not found');
+
+  callback && callback();
 };

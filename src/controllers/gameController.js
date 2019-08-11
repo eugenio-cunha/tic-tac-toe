@@ -5,19 +5,27 @@ const { cache, Game } = require('../lib');
 
 exports.game = (_req, res) => {
   const id = uuid();
-  const token = Math.floor(Math.random() * Math.floor(2)) ? 'x' : 'o';
+  const symbol = Math.floor(Math.random() * Math.floor(2)) ? 'X' : 'O';
 
-  cache.set(id, new Game(id, token), err => {
-    if (err) return res.sendStatus(500).json({ error: err });
+  cache.set(id, new Game(id, symbol), err => {
+    if (err) return res.status(500).json({ msg: err });
 
-    res.json({ id, firstPlayer: token });
+    res.json({ id, firstPlayer: symbol });
   });
 };
 
 exports.movement = (req, resp) => {
   const { id } = req.params;
+  const { player, position } = req.body;
+
   cache.get(id, (err, game) => {
-    game.movement('X', 0, 1, (err, res) => {
+    if (err || !game) return resp.status(404).json({ msg: 'Partida não encontrada' });
+
+    game.movement(player, position.x, position.y, (err, res) => {
+      if (err) return resp.status(400).json(err);
+
+      if (res && res.winner) cache.del(id);
+
       resp.json(res);
     });
   });
