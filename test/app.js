@@ -9,7 +9,7 @@ describe('APP: tic-tac-toe', () => {
   let id;
   let player;
 
-  it(`${url}/game`, done => {
+  it('Novo jogo', done => {
     request.post({ url: `${url}/game`, json: true }, (err, _res, body) => {
       should().not.exist(err);
 
@@ -83,75 +83,77 @@ describe('APP: tic-tac-toe', () => {
   });
 
   it('Partida finalizada (Winner)', done => {
-    const data = [
-      {
-        player: null,
-        position: {
-          x: 2,
-          y: 1
+    const data = {
+      movement: [
+        {
+          player: null,
+          position: {
+            x: 2,
+            y: 1
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 0,
+            y: 1
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 1,
+            y: 1
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 0,
+            y: 2
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 2,
+            y: 0
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 1,
+            y: 2
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 2,
+            y: 2
+          }
         }
-      },
-      {
-        player: null,
-        position: {
-          x: 0,
-          y: 0
-        }
-      },
-      {
-        player: null,
-        position: {
-          x: 0,
-          y: 1
-        }
-      },
-      {
-        player: null,
-        position: {
-          x: 1,
-          y: 1
-        }
-      },
-      {
-        player: null,
-        position: {
-          x: 0,
-          y: 2
-        }
-      },
-      {
-        player: null,
-        position: {
-          x: 2,
-          y: 0
-        }
-      },
-      {
-        player: null,
-        position: {
-          x: 1,
-          y: 2
-        }
-      },
-      {
-        player: null,
-        position: {
-          x: 2,
-          y: 2
-        }
-      }
-    ];
+      ]
+    };
 
     request.post({ url: `${url}/game`, json: true }, (err, _res, body) => {
       should().not.exist(err);
 
-      data[0].player = body.firstPlayer;
-      const movement = data.map((e, i, a) => {
+      data.movement[0].player = body.firstPlayer;
+      data.movement = data.movement.map((e, i, a) => {
         i > 0 && (e.player = a[i - 1].player === 'X' ? 'O' : 'X');
         return e;
       });
 
-      for (const value of movement) {
+      for (const value of data.movement) {
         request.post({ url: `${url}/game/${body.id}/movement`, body: value, json: true }, (err, _res, body) => {
           should().not.exist(err);
 
@@ -164,7 +166,95 @@ describe('APP: tic-tac-toe', () => {
     });
   });
 
-  it.skip('Partida finalizada (Draw)', done => {
-    done();
+  it('Partida finalizada (Draw)', done => {
+    const data = {
+      movement: [
+        {
+          player: null,
+          position: {
+            x: 1,
+            y: 0
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 0,
+            y: 2
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 1,
+            y: 2
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 2,
+            y: 2
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 0,
+            y: 1
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 2,
+            y: 1
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 2,
+            y: 0
+          }
+        },
+        {
+          player: null,
+          position: {
+            x: 1,
+            y: 1
+          }
+        }
+      ]
+    };
+
+    request.post({ url: `${url}/game`, json: true }, (err, _res, body) => {
+      should().not.exist(err);
+
+      data.movement[0].player = body.firstPlayer;
+      data.movement = data.movement.map((e, i, a) => {
+        i > 0 && (e.player = a[i - 1].player === 'X' ? 'O' : 'X');
+        return e;
+      });
+
+      for (const value of data.movement) {
+        request.post({ url: `${url}/game/${body.id}/movement`, body: value, json: true }, (err, _res, body) => {
+          should().not.exist(err);
+
+          if (body && body.status) {
+            expect(body.status).to.be.equal('Partida finalizada');
+            expect(body.winner).to.be.equal('Draw');
+            done();
+          }
+        });
+      }
+    });
   });
 });

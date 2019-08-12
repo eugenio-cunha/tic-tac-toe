@@ -9,6 +9,10 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const server = express();
 
+/**
+ * @description Inicializa a aplicação
+ * @param {Function} callback chamda de retorno `err => {};`
+ */
 exports.init = callback => {
   server.disable('x-powered-by');
   server.disable('etag');

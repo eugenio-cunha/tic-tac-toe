@@ -3,6 +3,11 @@
 const uuid = require('uuid/v4');
 const { cache, Game } = require('../lib');
 
+/**
+ * @description Inicia uma nova partida
+ * @param {Object} req requisição http
+ * @param {Object} res resposta http
+ */
 exports.game = (_req, res) => {
   const id = uuid();
   const symbol = Math.floor(Math.random() * Math.floor(2)) ? 'X' : 'O';
@@ -14,6 +19,11 @@ exports.game = (_req, res) => {
   });
 };
 
+/**
+ * @description Marca uma posição na partida
+ * @param {Object} req requisição http
+ * @param {Object} res resposta http
+ */
 exports.movement = (req, resp) => {
   const { id } = req.params;
   const { player, position } = req.body;
@@ -30,27 +40,3 @@ exports.movement = (req, resp) => {
     });
   });
 };
-
-// Caso a jogada seja feita com sucesso o código 200 deve ser retornado.
-
-// Caso não seja o turno do jogador, ou a partida não exista, um erro deve ser retornado.
-// {
-//   "msg": "Não é turno do jogador"
-// }
-
-// Partida Inexistente
-// {
-//   "msg": "Partida não encontrada"
-// }
-
-// Finalmente se o jogo chegar ao fim o retorno deve ser assim:
-// {
-//   "msg": "Partida finalizada",
-//   "winner": "X"
-// }
-
-// Se o jogo deu velha (empate), o campo jogador ganhador deve vir preenchido da seguinte forma:
-// {
-//   "status": "Partida finalizada",
-//   "winner": "Draw"
-// }
